@@ -1,0 +1,23 @@
+Imports Microsoft.Scripting.Hosting
+Imports IronPython.Hosting
+
+Public Class WebForm1
+    Inherits System.Web.UI.Page
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    End Sub
+
+    Protected Sub Page_Unload(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Unload
+
+    End Sub
+
+    Protected Sub btnRunPythonScript_Click(sender As Object, e As EventArgs) Handles btnRunPythonScript.Click
+        Dim py As ScriptRuntime = IronPython.Hosting.Python.CreateRuntime()
+        Dim pyt As Object = py.UseFile("D:\FYP\Testing\Test\example.py")
+        pyt.add(10, 5)
+        ' Access the result variable
+        Dim result As Object = pyt.result
+
+        ' Display the result (you can use it as needed)
+        lblResult.Text = $"Result: {result}"
+    End Sub
+End Class
